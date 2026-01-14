@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: flask-app
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python app/app.py"
+    envVars:
+      - key: EMAIL_USERNAME
+        from: secret
+      - key: EMAIL_PASSWORD
+        from: secret
+      - key: IMAP_SERVER
+        from: secret
+      - key: EMAILS_ROUTE
+        from: secret

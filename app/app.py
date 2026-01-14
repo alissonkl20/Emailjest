@@ -13,6 +13,9 @@ load_dotenv()
 # Inicializa o app Flask
 app = Flask(__name__)
 
+# Substitui a rota por uma variável de ambiente
+EMAILS_ROUTE = os.getenv("EMAILS_ROUTE", "/emails")
+
 # Função para conectar ao servidor de e-mail e buscar mensagens
 @lru_cache(maxsize=32)
 def fetch_emails():
@@ -73,7 +76,7 @@ def summarize_email(body):
     return body[:100] + "..." if len(body) > 100 else body
 
 # Rota principal para exibir os resumos dos e-mails
-@app.route("/emails", methods=["GET"])
+@app.route(EMAILS_ROUTE, methods=["GET"])
 def get_emails():
     try:
         emails = fetch_emails()
