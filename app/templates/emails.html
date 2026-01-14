@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emails</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .email {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .email:last-child {
+            border-bottom: none;
+        }
+
+        .email h2 {
+            font-size: 18px;
+            color: #555;
+            margin: 0 0 5px;
+        }
+
+        .email p {
+            margin: 5px 0;
+            color: #777;
+        }
+
+        .email .summary {
+            font-style: italic;
+            color: #333;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            .email h2 {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Emails</h1>
+        {% for email in emails %}
+        <div class="email">
+            <h2>{{ email.subject }}</h2>
+            <p><strong>From:</strong> {{ email.from }}</p>
+            <p class="summary">{{ email.summary }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
